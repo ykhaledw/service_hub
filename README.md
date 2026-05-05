@@ -1,16 +1,91 @@
-# service_hub
+# Service Marketplace App
 
-A new Flutter project.
+A modern Flutter application that allows users to browse services, create service requests, and communicate with service providers in a clean and scalable architecture.
 
-## Getting Started
+## 📱 Overview
 
-This project is a starting point for a Flutter application.
+This app simulates a real-world service marketplace where users can:
 
-A few resources to get you started if this is your first Flutter project:
+- Browse available services (e.g., plumbing, electrical, delivery)
+- Create and manage service orders
+- Communicate with service providers
+- Manage their profile and account
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The project focuses on building a production-level Flutter application with clean architecture and scalable code structure.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## ✨ Features
+
+## 🔐 Authentication
+    - Login & Register
+    - Form validation
+    - Token handling (local storage)
+    - Error handling
+
+## 🏠 Services
+    - Services listing
+    - Search & filtering
+    - Pagination (infinite scroll)
+
+## 📦 Orders
+    - Create new order
+    - Track order status (Pending / Active / Completed)
+    - View order details
+
+## 💬 Chat
+    - Chat between user and service provider
+    - Message list & conversation UI
+
+## 👤 Profile
+    - View and edit profile
+    - Settings
+
+
+## 🧱 Architecture
+
+This project follows a simplified Clean Architecture approach:
+
+## Presentation Layer
+    - UI + State Management (Cubit)
+## Domain Layer
+    - Business logic (use cases)
+## Data Layer
+    - API services + models + repositories
+    
+
+## ⚙️ Tech Stack
+    - Flutter
+    - Dart
+    - Cubit (State Management)
+    - Dio (Networking)
+    - SharedPreferences (Local Storage)
+
+## 📂 Project Structure
+    lib/
+    │
+    ├── core/
+    │   ├── di/        
+    │   ├── helpers/       
+    │   ├── networking/        
+    │   ├── routing/        
+    │   ├── widgets/        
+    │   └── theming/      
+    │
+    ├── features/
+    │   └── feature_name/
+    │       ├── data/
+    │       │   ├── repositories/
+    │       │   └── models/
+    │       ├── logic/
+    │       │   ├── cubit/
+    │       │   └── states/
+    │       └── ui/
+    │           ├── screen/
+    │           └── widgets/
+    │
+    |__ service_hub.dart
+    └── main.dart
+
+
+## ⭐ Notes
+
+This project is built for learning and demonstrating real-world Flutter development skills, focusing on clean code, scalability, and production-ready practices.
