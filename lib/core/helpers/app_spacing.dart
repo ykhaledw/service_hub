@@ -65,7 +65,9 @@ class AppSpacing {
   static double get buttonRadius => AppScreen.r(12);
 
   // Inputs
-  static double get inputHeight => AppScreen.h(56);
+  static double get inputHeightSm => AppScreen.h(45);
+  static double get inputHeightMd => AppScreen.h(48);
+  static double get inputHeightLg => AppScreen.h(51);
   static double get inputRadius => AppScreen.r(12);
 
   // Icons
