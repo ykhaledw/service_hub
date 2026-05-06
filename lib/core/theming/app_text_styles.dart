@@ -11,4 +11,35 @@ class AppTextStyles {
     letterSpacing: 0,
     color: AppColors.white,
   );
+  
+
+  // ─── Typography ─────────────────────────────────────────────────────────────
+  
+  static TextStyle title = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 30.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textPrimary,
+  );
+
+  static TextStyle subtitle = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textSecondary,
+  );
+
+  static TextStyle body = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 14.sp,
+    fontWeight: FontWeight.normal,
+    color: AppColors.textPrimary,
+  );
+
+  static TextStyle small = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 12.sp,
+    fontWeight: FontWeight.normal,
+    color: AppColors.textSecondary,
+  );
 }
