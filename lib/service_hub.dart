@@ -19,7 +19,7 @@ class ServiceHub extends StatelessWidget {
         ),
         home: child,
       ),
-      child: Scaffold(),
+      child: const Scaffold(),
     );
   }
 }
