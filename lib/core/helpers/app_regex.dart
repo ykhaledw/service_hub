@@ -2,8 +2,8 @@ class AppRegex {
   /// Checks if the provided string is a valid email address.
   static bool isEmailValid(String email) {
     return RegExp(
-            r'^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$')
-        .hasMatch(email);
+      r'^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$',
+    ).hasMatch(email);
   }
 
   /// Checks if the password is at least 8 characters long.
@@ -35,8 +35,8 @@ class AppRegex {
   /// At least 8 characters, 1 uppercase, 1 lowercase, 1 number, and 1 special character.
   static bool isStrongPasswordValid(String password) {
     return RegExp(
-            r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$')
-        .hasMatch(password);
+      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$',
+    ).hasMatch(password);
   }
 
   /// Checks if the provided string is a valid phone number.
@@ -58,7 +58,7 @@ class AppRegex {
   /// Checks if the provided string is a valid URL.
   static bool isUrlValid(String url) {
     return RegExp(
-            r'^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$')
-        .hasMatch(url);
+      r'^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$',
+    ).hasMatch(url);
   }
 }
