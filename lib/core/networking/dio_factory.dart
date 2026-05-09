@@ -7,26 +7,29 @@ class DioFactory {
 
   static Dio getDio() {
     Duration timeout = const Duration(seconds: 30);
+    
     if (dio == null) {
-      dio = Dio();
-      dio!.options.connectTimeout = timeout;
-      dio!.options.receiveTimeout = timeout;
-      addInterceptors();
-      return dio!;
-    } else {
-      return dio!;
+      dio = Dio(
+        BaseOptions(
+          connectTimeout: timeout,
+          receiveTimeout: timeout,
+        ),
+      );
+      _addInterceptors();
     }
+    
+    return dio!;
   }
 
-  static void addInterceptors() {
-    dio!.interceptors.add(
+  static void _addInterceptors() {
+    dio?.interceptors.add(
       PrettyDioLogger(
         requestHeader: true,
         requestBody: true,
         responseBody: true,
         responseHeader: false,
         error: true,
-      )
+      ),
     );
   }
 }
