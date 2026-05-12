@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:service_hub/core/helpers/app_spacing.dart';
+import 'package:service_hub/core/helpers/extensions.dart';
+import 'package:service_hub/core/helpers/screen_utils.dart';
+import 'package:service_hub/core/routing/routes.dart';
+import 'package:service_hub/core/theming/app_colors.dart';
+import 'package:service_hub/core/theming/app_text_styles.dart';
 
 class AnimatedSplashScreen extends StatefulWidget {
   const AnimatedSplashScreen({super.key});
@@ -41,7 +48,9 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     await _logoController.forward();
     await Future.wait([_progressController.forward(), _doAppInitialization()]);
 
-    if (context.mounted) {}
+    if (context.mounted) {
+      context.pushReplacementNamed(Routes.homeScreen);
+    }
   }
 
   Future<void> _doAppInitialization() async {
@@ -57,6 +66,72 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Scaffold(
+      backgroundColor: colorScheme.primary,
+      body: Center(
+        child: Column(
+          children: [
+            const Spacer(),
+
+            //Logo
+            FadeTransition(
+              opacity: _logoFade,
+              child: ScaleTransition(
+                scale: _logoScale,
+                child: Column(
+                  children: [
+                    SvgPicture.asset('assets/svg/main_icon.svg'),
+                    AppSpacing.verticalSpace(24),
+                    Text(
+                      'Service Hub',
+                      style: AppTextStyles.title.copyWith(
+                        color: AppColors.cardBackground,
+                      ),
+                    ),
+                    AppSpacing.verticalSpace(8),
+                    Text(
+                      'Your premium service concierge.',
+                      style: AppTextStyles.subtitle.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const Spacer(),
+
+            //Loading progress
+            Column(
+              children: [
+                AnimatedBuilder(
+                  animation: _progress,
+                  builder: (context, _) {
+                    return Column(
+                      children: [
+                        LinearProgressIndicator(
+                          value: _progress.value,
+                          backgroundColor: colorScheme.onPrimary.withValues(
+                            alpha: 0.3,
+                          ),
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            colorScheme.onPrimary,
+                          ),
+                          borderRadius: AppSpacing.borderRadiusMd,
+                          minHeight: AppScreen.h(2),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
