@@ -3,10 +3,12 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:service_hub/core/helpers/app_spacing.dart';
 import 'package:service_hub/core/helpers/extensions.dart';
-import 'package:service_hub/core/helpers/screen_utils.dart';
 import 'package:service_hub/core/routing/routes.dart';
 import 'package:service_hub/core/theming/app_colors.dart';
 import 'package:service_hub/core/theming/app_text_styles.dart';
+
+//flutter_native_splash
+//All colors, sizes have changed in the app and should be changed in the splash screen as well
 
 class AnimatedSplashScreen extends StatefulWidget {
   const AnimatedSplashScreen({super.key});
