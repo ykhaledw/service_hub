@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:service_hub/core/helpers/app_spacing.dart';
 import 'package:service_hub/core/helpers/extensions.dart';
@@ -25,12 +26,13 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
   @override
   void initState() {
     super.initState();
+    FlutterNativeSplash.remove();
     _logoController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 900),
     );
     _logoFade = CurvedAnimation(parent: _logoController, curve: Curves.easeIn);
-    _logoScale = Tween<double>(begin: 0.7, end: 0.1).animate(
+    _logoScale = Tween<double>(begin: 0.7, end: 1.0).animate(
       CurvedAnimation(parent: _logoController, curve: Curves.easeOutBack),
     );
 
@@ -41,7 +43,13 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     _progress = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: _progressController, curve: Curves.easeInOut),
     );
-    _startSequence();
+    // Wait for the first frame to actually be drawn before starting the
+    // animation sequence. On slow emulators, initState can run during a
+    // multi-second UI freeze (skipped frames), causing the entire animation
+    // to complete invisibly before anything is rendered on screen.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _startSequence();
+    });
   }
 
   Future<void> _startSequence() async {
@@ -105,30 +113,44 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
             const Spacer(),
 
             //Loading progress
-            Column(
-              children: [
-                AnimatedBuilder(
-                  animation: _progress,
-                  builder: (context, _) {
-                    return Column(
-                      children: [
-                        LinearProgressIndicator(
-                          value: _progress.value,
-                          backgroundColor: colorScheme.onPrimary.withValues(
-                            alpha: 0.3,
-                          ),
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            colorScheme.onPrimary,
-                          ),
-                          borderRadius: AppSpacing.borderRadiusMd,
-                          minHeight: AppScreen.h(2),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 40),
+              child: AnimatedBuilder(
+                animation: _progress,
+                builder: (context, _) {
+                  return LinearProgressIndicator(
+                    value: _progress.value,
+                    backgroundColor: Colors.white.withValues(alpha: 0.35),
+                    valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+                    minHeight: 6,
+                  );
+                },
+              ),
             ),
+            // Column(
+            //   children: [
+            //     AnimatedBuilder(
+            //       animation: _progress,
+            //       builder: (context, _) {
+            //         return Column(
+            //           children: [
+            //             LinearProgressIndicator(
+            //               value: _progress.value,
+            //               backgroundColor: colorScheme.onPrimary.withValues(
+            //                 alpha: 0.3,
+            //               ),
+            //               valueColor: AlwaysStoppedAnimation<Color>(
+            //                 colorScheme.onPrimary,
+            //               ),
+            //               borderRadius: AppSpacing.borderRadiusMd,
+            //               minHeight: AppScreen.h(2),
+            //             ),
+            //           ],
+            //         );
+            //       },
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),
