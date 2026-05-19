@@ -59,7 +59,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     await Future.wait([_progressController.forward(), _doAppInitialization()]);
 
     if (context.mounted) {
-      context.pushReplacementNamed(Routes.homeScreen);
+      context.pushReplacementNamed(Routes.loginScreen);
     }
   }
 
