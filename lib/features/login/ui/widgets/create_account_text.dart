@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:service_hub/core/helpers/app_spacing.dart';
+import 'package:service_hub/core/helpers/extensions.dart';
+import 'package:service_hub/core/routing/routes.dart';
 import 'package:service_hub/core/theming/app_colors.dart';
 import 'package:service_hub/core/theming/app_text_styles.dart';
 
@@ -18,7 +20,9 @@ class CreateAccountText extends StatelessWidget {
         ),
         AppSpacing.horizontalSpace(4),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(Routes.signUpScreen);
+          },
           child: Text(
             'Create Account',
             style: AppTextStyles.font14WhiteSemiBold.copyWith(
